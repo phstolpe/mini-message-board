@@ -1,9 +1,11 @@
 <%- include('header') %>
+  <%- include("partials/errors.ejs") %>
 <form method="POST" action="/new">
+
 <label for="name">Name: </label>
-<input type="text" id="name" placeholder = "Enter name.." name = "user">
+<input type="text" id="name" placeholder = "Enter name.." name = "name">
 <label for="message">Message: </label>
-<input type="text" id="message" placeholder = "Write message.." name = "text">
+<input type="text" id="message" placeholder = "Write message.." name = "message">
 <button type="submit">Submit</button>
 </form>
 <%- include('footer') %>
