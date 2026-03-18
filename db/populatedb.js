@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 const { Client } = require("pg");
-require('dotenv').config();
+const { argv } = require('node:process');
 
 const SQL = `
 CREATE TABLE IF NOT EXISTS messages(
@@ -19,9 +19,14 @@ VALUES
 `;
 
 async function main() {
-	console.log("seeding...");
+	const connectionString = process.argv[2];
+	if (!connectionString) {
+		console.error("No database connection string. Please provide one.");
+		process.exit(1);
+	}
+	console.log("Connecting to: ", connectionString);
 	const client = new Client({
-		connectionString: process.env.CONN,
+		connectionString: connectionString,
 	});
 	await client.connect();
 	await client.query(SQL);

@@ -16,9 +16,9 @@ async function createMessage(req, res) {
 		return res.status(404).render("form", { errors: errors.array() });
 	}
 
-	const user = req.body.user;
-	const text = req.body.text;
-	await db.createMessage(user, text);
+	const name = req.body.name;
+	const message = req.body.message;
+	await db.createMessage(name, message);
 	res.redirect("/");
 }
 
